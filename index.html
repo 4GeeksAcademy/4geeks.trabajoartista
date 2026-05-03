@@ -3,63 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil de Tatuador | Ink Studio</title>
+    <title>Neon Geisha Studio</title>
     <meta name="description" content="Landing page profesional para tatuador con estilo oscuro, galería, contacto directo por WhatsApp, reseñas y ubicación en Google Maps.">
     <meta name="keywords" content="tatuador, tatuajes, estudio de tatuajes, artista del tatuaje, contacto tatuajes">
-    <meta name="author" content="Ink Studio">
+    <meta name="author" content="Neon Geisha Studio">
     <meta name="robots" content="index, follow">
     <meta name="geo.region" content="AR-B">
     <meta name="geo.placename" content="Buenos Aires">
     <meta name="geo.position" content="-34.6037; -58.3816">
     <meta name="ICBM" content="-34.6037, -58.3816">
-    <meta property="og:title" content="Ink Studio | Tatuador profesional">
+    <meta property="og:title" content="Neon Geisha Studio | Tatuadora profesional">
     <meta property="og:description" content="Conoce mi trabajo, reserva tu cita y consulta por WhatsApp. Landing page responsiva para tatuador.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tudominio.com">
     <meta property="og:image" content="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80">
     <link rel="canonical" href="https://tudominio.com">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0b0b'/%3E%3Ctext x='50%25' y='53%25' dominant-baseline='middle' text-anchor='middle' font-family='Poppins,Arial,sans-serif' font-size='42' font-weight='700' fill='%23ff2a9e'%3EN%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Yellowtail&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #070707;
-            --surface: #111111;
-            --surface-alt: #1a1a1a;
-            --text: #f4f4f4;
-            --muted: #b5b5b5;
-            --accent: #ff375f;
-            --accent-soft: #ff6b8f;
+            --bg: #0c090a;
+            --surface: #171113;
+            --surface-alt: #231a1e;
+            --text: #f3ece9;
+            --muted: #cabfbc;
+            --accent: #d1455b;
+            --accent-soft: #e1778a;
+            --neon-red: #ff2a55;
+            --gold: #cfa870;
             --shadow: rgba(0, 0, 0, 0.35);
-            --pattern: rgba(120, 120, 120, 0.12);
-        }
-        [data-theme="light"] {
-            --bg: #f5f5f5;
-            --surface: #ffffff;
-            --surface-alt: #f0f0f0;
-            --text: #111111;
-            --muted: #5a5a5a;
-            --accent: #1f1f1f;
-            --accent-soft: #444444;
-            --shadow: rgba(0, 0, 0, 0.12);
-            --pattern: rgba(193, 167, 132, 0.14);
-        }
-        [data-theme="light"] header {
-            background: rgba(0, 0, 0, 0.95);
-        }
-        [data-theme="light"] .nav-links a,
-        [data-theme="light"] .topbar button,
-        [data-theme="light"] .menu-toggle,
-        [data-theme="light"] .brand {
-            color: #ffffff;
-        }
-        [data-theme="light"] .brand {
-            color: #ffffff !important;
-        }
-        [data-theme="light"] .hero-cta a.primary {
-            background: #ff375f;
-            color: #111;
-            border-color: transparent;
+            --pattern: rgba(168, 123, 122, 0.11);
+            --header-h: 84px;
+            --section-gap: clamp(1.2rem, 2.4vh, 2.2rem);
         }
         * {
             box-sizing: border-box;
@@ -68,20 +45,24 @@
         }
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-h) + 0.8rem);
+            scroll-snap-type: y proximity;
         }
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.94rem;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
-            line-height: 1.6;
-            background-image:
-                radial-gradient(circle at 18% 18%, var(--pattern), transparent 22%),
-                radial-gradient(circle at 82% 82%, var(--pattern), transparent 24%),
-                linear-gradient(135deg, transparent 46%, var(--pattern) 46.5%, var(--pattern) 47.5%, transparent 48%),
-                linear-gradient(45deg, transparent 46%, var(--pattern) 46.5%, var(--pattern) 47.5%, transparent 48%);
-            background-attachment: fixed;
-            background-size: 220px 220px, 240px 240px, 130px 130px, 130px 130px;
+            line-height: 1.52;
+            overflow-x: hidden;
+        }
+        main section {
+            font-family: 'Poppins', sans-serif;
+        }
+        main {
+            position: relative;
+            z-index: 1;
         }
         img {
             max-width: 100%;
@@ -96,11 +77,24 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
             backdrop-filter: blur(14px);
             padding: 0 1rem;
+            transition: background 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+        }
+        header.is-transparent {
+            background: transparent;
+            border-bottom-color: transparent;
+            backdrop-filter: none;
         }
         .container {
             width: min(1180px, 100% - 2rem);
             margin: 0 auto;
             padding: 0 1rem;
+        }
+        main > section > .container {
+            width: min(980px, 100% - 2rem);
+            display: grid;
+            align-content: center;
+            gap: clamp(0.8rem, 1.4vw, 1.2rem);
+            margin-inline: auto;
         }
         .nav-inner {
             display: grid;
@@ -112,9 +106,24 @@
             margin: 0 auto;
             padding: 1rem 0;
         }
-        .brand,
-        .topbar {
+        .brand {
             justify-self: center;
+        }
+        .brand {
+            font-family: 'Yellowtail', 'Poppins', cursive;
+            letter-spacing: 0.03em;
+            font-size: 1.22rem;
+            text-transform: none;
+            color: var(--neon-red);
+            text-shadow:
+                0 0 6px rgba(255, 42, 85, 0.88),
+                0 0 14px rgba(255, 42, 85, 0.72),
+                0 0 28px rgba(255, 42, 85, 0.5);
+        }
+        .nav-action {
+            justify-self: center;
+            display: flex;
+            align-items: center;
         }
         .nav-links {
             display: flex;
@@ -124,14 +133,14 @@
             flex-wrap: wrap;
         }
         .nav-links a,
-        .topbar button,
         .hero-cta a {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
         }
         .nav-links a:hover,
-        .topbar button:hover,
         .hero-cta a:hover {
             color: var(--accent);
         }
@@ -143,12 +152,82 @@
             color: var(--text);
             font-size: 1.4rem;
         }
+        .whatsapp-nav {
+            width: 2.25rem;
+            height: 2.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+            text-decoration: none;
+            background: transparent;
+            transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+        }
+        .whatsapp-nav svg {
+            width: 1.1rem;
+            height: 1.1rem;
+            stroke: var(--neon-red);
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 6px rgba(255, 42, 85, 0.45));
+        }
+        .whatsapp-nav:hover {
+            border-color: rgba(255, 42, 85, 0.72);
+            box-shadow: 0 0 14px rgba(255, 42, 85, 0.34);
+            transform: translateY(-1px);
+        }
         .hero {
-            min-height: 100vh;
+            min-height: 100svh;
             display: grid;
             align-items: center;
-            padding: 8rem 0 3rem;
+            padding: calc(var(--header-h) + 1rem) 0 var(--section-gap);
             position: relative;
+            isolation: isolate;
+            overflow: clip;
+            z-index: 0;
+        }
+        .hero::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("imagenes/imagen%201.jpeg") center center / cover no-repeat;
+            opacity: 0;
+            transition: opacity 360ms ease;
+            z-index: -2;
+        }
+        .hero.is-lit::before {
+            opacity: 1;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 25% 20%, var(--section-neon), transparent 55%),
+                linear-gradient(180deg, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0.72) 100%);
+            opacity: 0.46;
+            transition: opacity 360ms ease, filter 360ms ease;
+            z-index: -1;
+        }
+        .hero.is-lit::after {
+            opacity: 0.62;
+            filter: saturate(1.18);
+            animation: neonLampOn 520ms ease-out;
+        }
+        .hero > .container {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-copy {
+            max-width: 920px;
+            padding: 1rem 0;
+            border-radius: 0;
+            background: transparent;
+            border: none;
+            backdrop-filter: none;
         }
         .hero-grid {
             display: grid;
@@ -157,40 +236,72 @@
             align-items: center;
         }
         .hero-copy h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.06;
+            letter-spacing: 0.02em;
             margin-bottom: 1rem;
         }
+        .hero-logo {
+            width: min(1080px, 128%);
+            height: auto;
+            margin-bottom: -0.55rem;
+            display: block;
+            mix-blend-mode: normal;
+            opacity: 1;
+            filter: drop-shadow(0 0 8px rgba(255, 42, 85, 0.35));
+        }
         .hero-copy p {
-            color: var(--muted);
-            max-width: 620px;
-            margin-bottom: 1.8rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #fff2f4;
+            max-width: 100%;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.62);
         }
         .hero-cta {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-wrap: nowrap;
+            gap: 0.75rem;
+            width: fit-content;
         }
         .hero-cta a,
         .hero-cta button {
-            border: 1px solid rgba(255,255,255,0.15);
-            padding: 0.95rem 1.4rem;
+            flex: 1 1 0;
+            width: auto;
+            min-width: 0;
+            min-height: 38px;
+            padding: 0.5rem 0.9rem;
             border-radius: 999px;
+            border: 1px solid rgba(255, 42, 85, 0.75);
+            background: var(--neon-red);
+            color: #ffffff;
+            box-shadow: 0 0 14px rgba(255, 42, 85, 0.38);
             transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+            font-size: 0.74rem;
+            letter-spacing: 0.03em;
+            text-align: center;
+            justify-content: center;
+        }
+        .hero-cta a:only-child,
+        .hero-cta button:only-child {
+            flex: 0 0 auto;
+            min-width: 192px;
         }
         .hero-cta a.primary,
         .hero-cta button.primary {
-            background: var(--accent);
-            color: #111;
-            border-color: transparent;
+            background: var(--neon-red);
+            color: #ffffff;
+            border-color: rgba(255, 42, 85, 0.75);
         }
         .hero-cta a:hover,
         .hero-cta button:hover,
         .contact-actions button:hover,
-        .contact-actions a:hover,
-        .topbar button:hover {
-            background: #ff375f;
-            color: #111;
-            border-color: #ff375f;
+        .contact-actions a:hover {
+            background: #ff4f74;
+            color: #ffffff;
+            border-color: #ff4f74;
         }
         .hero-visual {
             display: grid;
@@ -218,20 +329,120 @@
             width: 100%;
         }
         section {
-            padding: 6rem 0;
+            min-height: calc(100svh - var(--header-h));
+            display: grid;
+            align-items: center;
+            padding: var(--section-gap) 0;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            position: relative;
+            isolation: isolate;
+            overflow: clip;
+            --section-neon: rgba(255, 56, 86, 0.35);
+        }
+        #home {
+            --section-neon: rgba(255, 137, 40, 0.45);
+        }
+        #about {
+            --section-neon: rgba(231, 185, 92, 0.42);
+        }
+        #gallery {
+            --section-neon: rgba(255, 54, 82, 0.44);
+        }
+        #services {
+            --section-neon: rgba(255, 102, 41, 0.36);
+        }
+        #reviews {
+            --section-neon: rgba(222, 173, 74, 0.36);
+        }
+        #location {
+            --section-neon: rgba(255, 63, 86, 0.34);
+        }
+        #contact {
+            --section-neon: rgba(255, 0, 170, 0.42);
+        }
+        main > section:not(.hero)::before,
+        main > section:not(.hero)::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        main > section:not(.hero)::before {
+            background: url("imagenes/imagen%202.jpeg") center center / cover no-repeat;
+            opacity: 0.36;
+            filter: saturate(1.35) contrast(1.28) brightness(0.92);
+            mix-blend-mode: screen;
+            transition: opacity 420ms ease, filter 420ms ease;
+            z-index: -2;
+        }
+        main > section:not(.hero)::after {
+            background:
+                radial-gradient(circle at 20% 18%, color-mix(in srgb, var(--section-neon) 88%, transparent), transparent 56%),
+                radial-gradient(circle at 82% 78%, color-mix(in srgb, var(--section-neon) 85%, transparent), transparent 60%),
+                linear-gradient(180deg, rgba(8, 8, 8, 0.52) 0%, rgba(8, 8, 8, 0.66) 100%);
+            opacity: 0.42;
+            mix-blend-mode: color-dodge;
+            transition: opacity 420ms ease, filter 420ms ease;
+            z-index: -1;
+        }
+        main > section.is-lit:not(.hero)::before {
+            opacity: 0.52;
+            filter: saturate(1.65) contrast(1.42) brightness(1.02);
+        }
+        main > section.is-lit:not(.hero)::after {
+            opacity: 0.68;
+            filter: saturate(1.36) brightness(1.08);
+            animation: neonLampOn 520ms ease-out;
+        }
+        @keyframes neonLampOn {
+            0% {
+                opacity: 0.22;
+                filter: brightness(0.68) saturate(0.84);
+            }
+            52% {
+                opacity: 0.64;
+                filter: brightness(1.08) saturate(1.22);
+            }
+            100% {
+                filter: brightness(1) saturate(1.1);
+            }
+        }
+        main > section:not(.hero) {
+            position: relative;
+            z-index: 2;
+            background: rgba(8, 8, 8, 0.2);
         }
         section h2 {
-            font-size: clamp(2rem, 3vw, 2.8rem);
-            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1.55rem, 2.5vw, 2.3rem);
+            margin-bottom: 0.65rem;
+            line-height: 1.1;
+            letter-spacing: 0.03em;
+            position: relative;
+            padding-bottom: 0.45rem;
+        }
+        section h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 74px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 100%);
         }
         section p.lead {
             max-width: 760px;
             color: var(--muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1.05rem;
+            font-size: 0.88rem;
         }
         .section-grid {
             display: grid;
-            gap: 2rem;
+            gap: clamp(0.9rem, 1.8vw, 1.4rem);
+        }
+        #services .section-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
         .about-grid,
         .gallery-grid,
@@ -243,72 +454,153 @@
         .service-card,
         .review-card,
         .contact-card {
-            background: var(--surface);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: 0 18px 40px var(--shadow);
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+        .about-grid > div,
+        .service-card,
+        .review-card,
+        .contact-card {
+            border-left: 2px solid rgba(255, 255, 255, 0.16);
+            padding-left: 1rem;
         }
         .service-card {
             display: grid;
-            gap: 1rem;
+            gap: 0.52rem;
         }
         .service-card h3 {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.2rem;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.02em;
         }
         .gallery-grid {
             display: grid;
-            grid-auto-flow: column;
-            grid-auto-columns: minmax(220px, 1fr);
-            gap: 0.75rem;
-            align-items: stretch;
-            justify-content: center;
-            overflow-x: auto;
-            padding-bottom: 0.75rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
+        #gallery {
+            padding-top: calc(var(--section-gap) + 1.4rem);
+            padding-bottom: calc(var(--section-gap) + 1.4rem);
+        }
+        #gallery .container {
+            width: min(920px, 100% - 2rem);
+            justify-items: stretch;
+            text-align: left;
+        }
+        #gallery .gallery-grid {
+            width: min(860px, 100%);
+            margin-top: 0.4rem;
+            gap: 1rem;
+        }
+        #gallery h2::after {
+            left: 0;
+            transform: none;
         }
         .gallery-grid figure {
             position: relative;
             overflow: hidden;
-            border-radius: 24px;
-            aspect-ratio: 1 / 1;
+            border-radius: 16px;
             background: var(--surface-alt);
-            width: 100%;
-            min-width: 220px;
-            max-width: 320px;
+            margin: 0;
+            aspect-ratio: 1 / 1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 rgba(255, 42, 85, 0);
+            transition: border-color 240ms ease, box-shadow 240ms ease, transform 240ms ease;
         }
         .gallery-grid img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            object-position: center;
-            transition: transform 0.3s ease;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .gallery-grid figure:hover {
+            border-color: rgba(255, 42, 85, 0.95);
+            box-shadow:
+                0 0 10px rgba(255, 42, 85, 0.6),
+                0 0 24px rgba(255, 42, 85, 0.45),
+                inset 0 0 0 1px rgba(255, 42, 85, 0.52);
+            transform: translateY(-2px);
         }
         .gallery-grid figure:hover img {
-            transform: scale(1.05);
+            transform: scale(1.02);
+            filter: saturate(1.06);
         }
         .review-card {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.65rem;
+        }
+        .review-card p,
+        .about-grid p,
+        .service-card p,
+        .contact-card p,
+        .contact-field label,
+        .contact-field input,
+        .contact-field textarea {
+            font-size: 0.86rem;
         }
         .review-stars {
-            color: #ffcf3f;
+            color: var(--gold);
+            font-size: 0.82rem;
+            letter-spacing: 0.2em;
+        }
+        #reviews .container,
+        #location .container,
+        #contact .container {
+            width: min(900px, 100% - 2rem);
+        }
+        #reviews h2,
+        #location h2,
+        #contact h2 {
+            margin-bottom: 0.35rem;
+        }
+        #reviews p.lead,
+        #location p.lead,
+        #contact p.lead {
+            margin-bottom: 0.75rem;
+        }
+        #reviews .section-grid {
+            gap: 0.65rem;
+        }
+        #reviews .review-card {
+            gap: 0.4rem;
+        }
+        #reviews .review-card p {
+            line-height: 1.35;
         }
         .map-embed {
             width: 100%;
-            height: 420px;
+            height: min(42svh, 320px);
             border: none;
-            border-radius: 24px;
-            box-shadow: 0 18px 40px var(--shadow);
+            border-radius: 14px;
+            box-shadow: none;
+        }
+        #location {
+            align-items: center;
         }
         .contact-card {
             display: grid;
-            gap: 1rem;
+            gap: 0.9rem;
+        }
+        #contact .section-grid {
+            gap: 0.8rem;
+            align-items: start;
+        }
+        #contact .contact-card {
+            gap: 0.58rem;
         }
         .contact-field {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+        }
+        #contact .contact-field {
+            gap: 0.35rem;
         }
         .contact-field label {
             font-size: 0.95rem;
@@ -319,77 +611,157 @@
             background: var(--surface-alt);
             border: 1px solid rgba(255,255,255,0.1);
             color: var(--text);
-            padding: 0.95rem 1rem;
+            padding: 0.72rem 0.9rem;
             border-radius: 16px;
-            min-height: 48px;
+            min-height: 42px;
+        }
+        #contact .contact-field input,
+        #contact .contact-field textarea {
+            min-height: 36px;
+            padding: 0.56rem 0.78rem;
         }
         .contact-field textarea {
-            min-height: 140px;
+            min-height: 96px;
             resize: vertical;
+        }
+        #contact .contact-field textarea {
+            min-height: 68px;
         }
         .contact-actions {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 1rem;
             align-items: center;
+        }
+        #contact .contact-actions {
+            gap: 0.55rem;
         }
         .contact-actions button,
         .contact-actions a {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 160px;
-            padding: 1rem 1.4rem;
+            flex: 1 1 0;
+            width: auto;
+            min-width: 0;
+            min-height: 44px;
+            padding: 0.72rem 1rem;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.15);
-            background: var(--accent);
-            color: #111;
+            border: 1px solid rgba(255, 42, 85, 0.75);
+            background: var(--neon-red);
+            color: #ffffff;
             font-weight: 600;
             text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+            box-shadow: 0 0 14px rgba(255, 42, 85, 0.38);
         }
         .contact-actions button:hover,
-        .contact-actions a:hover,
-        .topbar button:hover {
-            background: var(--accent);
-            color: #111;
-            border-color: var(--accent);
+        .contact-actions a:hover {
+            background: #ff4f74;
+            color: #ffffff;
+            border-color: #ff4f74;
+            box-shadow: 0 0 18px rgba(255, 42, 85, 0.52);
         }
         .footer {
-            padding: 2rem 0 4rem;
+            min-height: min(32svh, 260px);
+            padding: 2rem 0 2.6rem;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            scroll-snap-align: start;
+            position: relative;
+            z-index: 3;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(207, 168, 112, 0.12), transparent 40%),
+                linear-gradient(180deg, #130d0f 0%, #090607 100%);
+            border-top: 1px solid rgba(207, 168, 112, 0.28);
+        }
+        .footer::before {
+            content: "";
+            position: absolute;
+            inset: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+        .footer p {
             text-align: center;
             color: var(--muted);
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            position: relative;
+            z-index: 1;
         }
-        .topbar {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        .theme-toggle {
-            border-radius: 999px;
-            padding: 0.8rem 1rem;
-            border: 1px solid rgba(255,255,255,0.15);
-            cursor: pointer;
-            background: transparent;
-            color: var(--text);
+        .footer-sign {
+            font-family: 'Yellowtail', 'Poppins', cursive;
+            color: var(--gold);
+            text-transform: none;
+            letter-spacing: 0.03em;
+            font-size: 1.05rem;
+            margin-bottom: 0.55rem;
+            position: relative;
+            z-index: 1;
         }
         @media (max-width: 960px) {
+            .hero-logo {
+                width: min(860px, 124%);
+                margin-bottom: -0.35rem;
+            }
             .hero-grid,
             .about-grid,
             .reviews-grid,
             .contact-grid {
                 grid-template-columns: 1fr;
             }
+            #reviews .container,
+            #location .container,
+            #contact .container {
+                width: min(760px, 100% - 2rem);
+            }
+            main > section > .container {
+                width: min(760px, 100% - 2rem);
+            }
+            #services .section-grid {
+                grid-template-columns: 1fr;
+            }
             .gallery-grid {
-                grid-auto-columns: minmax(180px, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            #gallery {
+                padding-top: 4.6rem;
+                padding-bottom: 4.6rem;
             }
             .hero {
-                padding-top: 6rem;
+                min-height: auto;
+                padding-top: calc(var(--header-h) + 0.8rem);
+            }
+            section {
+                min-height: auto;
+                padding: 3.8rem 0;
+            }
+            .about-grid > div,
+            .service-card,
+            .review-card,
+            .contact-card {
+                border-left-width: 1px;
+                padding-left: 0.8rem;
+            }
+            .map-embed {
+                height: 300px;
             }
         }
-        @media (max-width: 720px) {
+        @media (min-width: 961px) {
+            html {
+                scroll-snap-type: y mandatory;
+            }
+        }
+        @media (max-width: 900px) {
+            .nav-inner {
+                grid-template-columns: auto auto auto;
+            }
             .nav-links {
                 position: fixed;
-                inset: 0 auto auto 0;
+                inset: 0 0 0 auto;
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 5rem 1.5rem 1.5rem;
@@ -401,19 +773,40 @@
                 transform: translateX(100%);
                 transition: transform 0.25s ease;
                 height: 100vh;
+                z-index: 120;
             }
             .nav-links.open {
                 transform: translateX(0);
             }
             .menu-toggle {
                 display: inline-flex;
+                justify-self: center;
             }
             header {
                 padding: 0 1rem;
             }
+            .nav-action {
+                justify-self: end;
+            }
         }
         @media (max-width: 520px) {
-            .tattoo-gallery {
+            .hero-logo {
+                width: min(720px, 130%);
+                margin-bottom: -0.2rem;
+            }
+            .hero-copy {
+                padding: 0.85rem 0.88rem;
+            }
+            .hero-cta {
+                gap: 0.62rem;
+            }
+            .hero-cta a,
+            .hero-cta button {
+                min-height: 40px;
+                padding: 0.62rem 0.7rem;
+                font-size: 0.74rem;
+            }
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -422,10 +815,10 @@
 <body>
     <header>
         <div class="container nav-inner">
-            <div class="brand">Ink Studio</div>
-            <button class="menu-toggle" aria-label="Abrir menú" id="menuToggle">☰</button>
+            <div class="brand">Neon Geisha Studio</div>
+            <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" id="menuToggle">☰</button>
             <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
-                <a href="#home">Inicio</a>
+                <a class="nav-home" href="#home">Inicio</a>
                 <a href="#about">Sobre mí</a>
                 <a href="#gallery">Imágenes</a>
                 <a href="#services">Descripción</a>
@@ -433,8 +826,13 @@
                 <a href="#location">Ubicación</a>
                 <a href="#contact">Contacto</a>
             </nav>
-            <div class="topbar">
-                <button class="theme-toggle" id="themeToggle">Modo claro</button>
+            <div class="nav-action">
+                <a class="whatsapp-nav" href="https://wa.me/5491123456789" target="_blank" rel="noreferrer noopener" aria-label="Abrir WhatsApp">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M20 11.5a8.5 8.5 0 0 1-12.48 7.53L4 20l1.02-3.33A8.5 8.5 0 1 1 20 11.5z" />
+                        <path d="M9.18 8.85c-.2-.45-.41-.46-.6-.47h-.51a1 1 0 0 0-.72.34 3.1 3.1 0 0 0-.98 2.26c0 1.33.95 2.62 1.08 2.8.13.18 1.85 3.1 4.57 4.2 2.26.91 2.73.73 3.22.68.49-.05 1.58-.64 1.8-1.26.22-.62.22-1.14.15-1.26-.07-.12-.26-.19-.54-.33-.28-.14-1.65-.81-1.91-.9-.26-.1-.45-.14-.64.14-.19.28-.73.9-.9 1.09-.17.19-.33.21-.62.07-.29-.14-1.21-.44-2.31-1.41-.86-.76-1.44-1.69-1.61-1.97-.17-.28-.02-.43.13-.57.13-.13.29-.33.43-.5.14-.17.19-.29.29-.48.09-.19.05-.36-.02-.5-.07-.14-.63-1.59-.91-2.2z" />
+                    </svg>
+                </a>
             </div>
         </div>
     </header>
@@ -443,17 +841,10 @@
         <section class="hero" id="home">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <p class="lead">Tatuajes con personalidad, trazo preciso y estilo único.</p>
-                    <div class="hero-brand">
-                        <div class="hero-brand">
-                            <span>INK STUDIO</span>
-                        </div>
-                    </div>
-                    <h1>Arte en la piel para tus historias más reales.</h1>
+                    <img class="hero-logo" src="imagenes/logo3.png" alt="Logo Neon Geisha Studio">
                     <p class="lead">Especialista en tatuajes blackwork, realismo y linework. Reserva tu sesión y crea un diseño exclusivo con técnica profesional y estética de impacto.</p>
                     <div class="hero-cta">
                         <a class="primary" href="https://wa.me/5491123456789" target="_blank" rel="noreferrer noopener">Contactar por WhatsApp</a>
-                        <a href="#contact">Escribir por Gmail</a>
                     </div>
                 </div>
             </div>
@@ -462,7 +853,7 @@
         <section id="about">
             <div class="container">
                 <h2>Sobre mí</h2>
-                <p class="lead">Soy artista del tatuaje con más de 8 años de experiencia. Trabajo con diseños personalizados que combinan estética moderna y técnica tradicional, cuidando cada detalle para que tu tatuaje sea único.</p>
+                <p class="lead">Soy Akemi, artista del tatuaje con más de 8 años de experiencia. Trabajo con diseños personalizados que combinan estética moderna y técnica tradicional, cuidando cada detalle para que tu tatuaje sea único.</p>
                 <div class="section-grid about-grid">
                     <div>
                         <h3>Experiencia profesional</h3>
@@ -482,13 +873,22 @@
                 <p class="lead">Una selección de trabajos recientes con contraste, líneas limpias y fuerza visual.</p>
                 <div class="gallery-grid">
                     <figure>
-                        <img src="https://www.tatuantes.com/wp-content/uploads/2024/07/tatuajes-lineales-portada.jpg" alt="Tatuajes lineal de triangulo en antebrazo">
+                        <img src="imagenes/imagen%203.jpg" alt="Tattoo pinup en brazo con trazo fino">
                     </figure>
                     <figure>
-                        <img src="https://i.pinimg.com/564x/76/87/c9/7687c9abd70e988d338fe481be861e0a.jpg" alt="Tatuaje minimalista de línea de flecha en antebrazo">
+                        <img src="imagenes/imagen%204.jpg" alt="Diseño lineal en negro de rostro femenino">
                     </figure>
                     <figure>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcjUOL5YI-bewfST8ifrwZDy4mwgkdazfgjw&s" alt="Tatuaje lineal con un pequeño hombrecito colgado en el muslo">
+                        <img src="imagenes/imagen%2010.jpg" alt="Tatuaje lineal de ventana y nube en hombro">
+                    </figure>
+                    <figure>
+                        <img src="imagenes/imagen%206.jpg" alt="Tatuadora trabajando en sesión en estudio">
+                    </figure>
+                    <figure>
+                        <img src="imagenes/imagen%207.jpg" alt="Tatuaje de dragon rojo sobre antebrazo">
+                    </figure>
+                    <figure>
+                        <img src="imagenes/imagen%208.jpg" alt="Tatuaje vertical con tigre y arquitectura oriental">
                     </figure>
                 </div>
             </div>
@@ -581,7 +981,7 @@
                         <p>Sábados: 11:00 - 17:00</p>
                         <p>Domingos: solo consultas previas.</p>
                         <h3>Datos de contacto</h3>
-                        <p>Email: contacto@inkstudio.com</p>
+                        <p>Email: contacto@neongeisha.com</p>
                         <p>Tel: +54 9 11 2345 6789</p>
                         <p>Dirección: Av. Corrientes 1234, CABA</p>
                     </div>
@@ -592,35 +992,99 @@
 
     <footer class="footer">
         <div class="container">
-            <p>© 2026 Ink Studio. Tatuajes profesionales con estilo oscuro y actitud vibrante.</p>
+            <p class="footer-sign">Neon Geisha Studio</p>
+            <p>© 2026 Neon Geisha Studio. Tatuajes profesionales con estilo oscuro y actitud vibrante.</p>
         </div>
     </footer>
 
     <script>
         const navLinks = document.getElementById('navLinks');
         const menuToggle = document.getElementById('menuToggle');
-        const themeToggle = document.getElementById('themeToggle');
         const sendGmail = document.getElementById('sendGmail');
-        const body = document.body;
+        const topHeader = document.querySelector('header');
+        const pageSections = Array.from(document.querySelectorAll('main > section'));
+        const navAnchors = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+
+        const setMenuState = isOpen => {
+            navLinks.classList.toggle('open', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+        };
+
+        const scrollToSectionCenter = section => {
+            if (!section) return;
+
+            const headerHeight = topHeader ? topHeader.offsetHeight : 0;
+            const sectionTop = window.scrollY + section.getBoundingClientRect().top;
+
+            window.scrollTo({
+                top: Math.max(0, sectionTop - headerHeight - 2),
+                behavior: 'smooth'
+            });
+        };
+
+        const syncHeaderTransparency = () => {
+            if (!topHeader) return;
+            topHeader.classList.toggle('is-transparent', window.scrollY > 24);
+        };
+
+        window.addEventListener('scroll', syncHeaderTransparency, { passive: true });
+        syncHeaderTransparency();
+
+        if ('IntersectionObserver' in window) {
+            const sectionObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    entry.target.dataset.visibleRatio = String(entry.intersectionRatio);
+                });
+
+                let activeSection = null;
+                let maxRatio = 0;
+
+                pageSections.forEach(section => {
+                    const ratio = Number(section.dataset.visibleRatio || '0');
+                    if (ratio > maxRatio) {
+                        maxRatio = ratio;
+                        activeSection = section;
+                    }
+                });
+
+                pageSections.forEach(section => {
+                    section.classList.toggle('is-lit', section === activeSection && maxRatio > 0.12);
+                });
+            }, {
+                threshold: [0, 0.12, 0.25, 0.45, 0.6, 0.8],
+                rootMargin: '-6% 0px -6% 0px'
+            });
+
+            pageSections.forEach(section => sectionObserver.observe(section));
+        } else {
+            pageSections.forEach(section => section.classList.add('is-lit'));
+        }
 
         menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
+            setMenuState(!navLinks.classList.contains('open'));
+        });
+
+        navAnchors.forEach(link => {
+            link.addEventListener('click', event => {
+                const sectionId = link.getAttribute('href');
+                const targetSection = sectionId ? document.querySelector(sectionId) : null;
+                if (!targetSection) return;
+
+                event.preventDefault();
+                setMenuState(false);
+                scrollToSectionCenter(targetSection);
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 900 && navLinks.classList.contains('open')) {
+                setMenuState(false);
+            }
         });
 
         document.addEventListener('click', event => {
             if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('open')) {
-                navLinks.classList.remove('open');
-            }
-        });
-
-        themeToggle.addEventListener('click', () => {
-            const isLight = body.getAttribute('data-theme') === 'light';
-            if (isLight) {
-                body.removeAttribute('data-theme');
-                themeToggle.textContent = 'Modo claro';
-            } else {
-                body.setAttribute('data-theme', 'light');
-                themeToggle.textContent = 'Modo oscuro';
+                setMenuState(false);
             }
         });
 
@@ -636,7 +1100,7 @@
 
             const subject = encodeURIComponent('Consulta de tatuaje');
             const bodyContent = encodeURIComponent(`Nombre: ${name}\nEmail: ${email}\n\nMensaje:\n${message}`);
-            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contacto@inkstudio.com&su=${subject}&body=${bodyContent}`;
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=contacto@neongeisha.com&su=${subject}&body=${bodyContent}`;
             window.open(gmailUrl, '_blank');
         });
     </script>
