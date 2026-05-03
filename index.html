@@ -37,6 +37,7 @@
             --pattern: rgba(168, 123, 122, 0.11);
             --header-h: 84px;
             --section-gap: clamp(1.2rem, 2.4vh, 2.2rem);
+            --active-neon: rgba(255, 137, 40, 0.45);
         }
         * {
             box-sizing: border-box;
@@ -379,12 +380,12 @@
         }
         main > section:not(.hero)::after {
             background:
-                radial-gradient(circle at 20% 18%, color-mix(in srgb, var(--section-neon) 88%, transparent), transparent 56%),
-                radial-gradient(circle at 82% 78%, color-mix(in srgb, var(--section-neon) 85%, transparent), transparent 60%),
+                radial-gradient(circle at 20% 18%, color-mix(in srgb, var(--active-neon) 88%, transparent), transparent 56%),
+                radial-gradient(circle at 82% 78%, color-mix(in srgb, var(--active-neon) 85%, transparent), transparent 60%),
                 linear-gradient(180deg, rgba(8, 8, 8, 0.52) 0%, rgba(8, 8, 8, 0.66) 100%);
             opacity: 0.42;
             mix-blend-mode: color-dodge;
-            transition: opacity 420ms ease, filter 420ms ease;
+            transition: background 520ms ease, opacity 420ms ease, filter 420ms ease;
             z-index: -1;
         }
         main > section.is-lit:not(.hero)::before {
@@ -1003,8 +1004,17 @@
         const menuToggle = document.getElementById('menuToggle');
         const sendGmail = document.getElementById('sendGmail');
         const topHeader = document.querySelector('header');
+        const rootStyles = document.documentElement;
         const pageSections = Array.from(document.querySelectorAll('main > section'));
         const navAnchors = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+
+        const syncNeonColor = section => {
+            if (!section) return;
+            const neonColor = getComputedStyle(section).getPropertyValue('--section-neon').trim();
+            if (neonColor) {
+                rootStyles.style.setProperty('--active-neon', neonColor);
+            }
+        };
 
         const setMenuState = isOpen => {
             navLinks.classList.toggle('open', isOpen);
@@ -1051,6 +1061,10 @@
                 pageSections.forEach(section => {
                     section.classList.toggle('is-lit', section === activeSection && maxRatio > 0.12);
                 });
+
+                if (activeSection) {
+                    syncNeonColor(activeSection);
+                }
             }, {
                 threshold: [0, 0.12, 0.25, 0.45, 0.6, 0.8],
                 rootMargin: '-6% 0px -6% 0px'
@@ -1059,7 +1073,10 @@
             pageSections.forEach(section => sectionObserver.observe(section));
         } else {
             pageSections.forEach(section => section.classList.add('is-lit'));
+                        syncNeonColor(pageSections[0]);
         }
+
+                syncNeonColor(pageSections[0]);
 
         menuToggle.addEventListener('click', () => {
             setMenuState(!navLinks.classList.contains('open'));
